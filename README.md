@@ -160,7 +160,7 @@ The work is assigned across the team and we use slack channel as our primary com
 - Created a **Kafka consumer** on **VM3** to receive images, perform classification using a pre-trained **ResNet-20** model, and send predictions to Kafka.
 - Implemented the image inference pipeline and ensured accurate predictions.
 
-### CouchDB Setup and Data Consumer (VM4) - - Xiaotong 'Brandon' Ma
+### CouchDB Setup and Data Consumer (VM4) - Xiaotong 'Brandon' Ma
 - Set up **CouchDB** on **VM4** to store image data and predictions.
 - Developed a **Kafka consumer** to store and update image data in CouchDB.
 
