@@ -27,6 +27,7 @@ For image classification, we use a pre-trained **ResNet-20** model from **PyTorc
 
 ```python
 model = torch.hub.load('chenyaofo/pytorch-cifar-models', 'cifar10_resnet20', pretrained=True)
+```
 
 **ResNet-20** is a well-optimized model for CIFAR-10 and provides a good balance between computational efficiency and accuracy for small image sizes like 32x32 pixels. It utilizes residual connections to mitigate the vanishing gradient problem commonly found in deep networks.
 
