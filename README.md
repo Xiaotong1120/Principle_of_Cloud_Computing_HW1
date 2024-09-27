@@ -129,7 +129,41 @@ curl -X GET http://admin:admin@127.0.0.1:5984/img_db/<IMAGE_ID>
 
 ## Notes
 
-This pipeline is designed for real-time processing. 
-The Kafka producer sends images every 10 seconds during a minute (so 6 times in total) , and the consumers process the data in near real-time. 
-CouchDB is used to store the entire history of received images and their associated predictions.
+- This pipeline is designed for real-time processing. 
+- The Kafka producer sends images every 10 seconds during a minute (so 6 times in total) , and the consumers process the data in near real-time. 
+- CouchDB is used to store the entire history of received images and their associated predictions.
+- We use ChatGPT for part of the designing, coding, debugging and writing.
 
+# Documentation of Work Split Among Team
+
+The work is assigned across the team and we use slack channel as our primary communication tool.
+
+### Virtual Machine Setup - Xiaotong 'Brandon' Ma
+- Configured four virtual machines (VM1, VM2, VM3, VM4) to handle the different components of the project.
+- VM1 acts as the image producer, VM2 as the Kafka broker, VM3 as the consumer for machine learning inference, and VM4 for data storage in CouchDB.
+
+### Environment Setup - Xiaotong 'Brandon' Ma, Sparsh Amarnani, Arpit Ojha
+- Installed and configured necessary software, including **Apache Kafka**, **Zookeeper**, **CouchDB**, **Python** with required libraries, and **PyTorch** for machine learning.
+- Set up Python environments on all VMs, ensuring **kafka-python**, **torch**, **Pillow**, **couchdb**, and other dependencies were installed and working correctly.
+
+### Kafka Setup and Configuration  - Arpit Ojha
+- Set up and configured **Apache Kafka** on **VM2** to act as the message broker.
+- Configured Kafka topics for image data and predictions.
+- Set up **Zookeeper** and verified communication between the producer and consumers.
+- Verified network connectivity and proper communication between VMs.
+
+### Image Producer (VM1)  - Xiaotong 'Brandon' Ma
+- Developed a **Kafka producer** on **VM1** to stream CIFAR-10 images every 10 seconds.
+- Implemented image processing, converting images to base64 and sending them to the Kafka broker.
+
+### Machine Learning Model and Inference (VM3)  - Sparsh Amarnani
+- Created a **Kafka consumer** on **VM3** to receive images, perform classification using a pre-trained **ResNet-20** model, and send predictions to Kafka.
+- Implemented the image inference pipeline and ensured accurate predictions.
+
+### CouchDB Setup and Data Consumer (VM4) - - Xiaotong 'Brandon' Ma
+- Set up **CouchDB** on **VM4** to store image data and predictions.
+- Developed a **Kafka consumer** to store and update image data in CouchDB.
+
+### Testing and Documentation  - Xiaotong 'Brandon' Ma, Sparsh Amarnani, Arpit Ojha
+- Tested the entire system for smooth communication and data flow.
+- Documented the project setup and deployment process in the **README** file.
