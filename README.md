@@ -31,7 +31,7 @@ model = torch.hub.load('chenyaofo/pytorch-cifar-models', 'cifar10_resnet20', pre
 
 **ResNet-20** is a well-optimized model for CIFAR-10 and provides a good balance between computational efficiency and accuracy for small image sizes like 32x32 pixels. It utilizes residual connections to mitigate the vanishing gradient problem commonly found in deep networks.
 
-## Why ResNet-20?
+### Why ResNet-20?
 
 - **Tailored for CIFAR-10**: This model is specifically designed and trained for the CIFAR-10 dataset, making it highly suitable for classifying its small image sizes.
 - **Computational Efficiency**: ResNet-20 offers a good balance between accuracy and computational speed.
