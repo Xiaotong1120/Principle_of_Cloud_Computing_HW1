@@ -23,13 +23,18 @@ This project implements an IoT data pipeline using **Kafka** for real-time image
   
 ### Machine Learning Model
 
-For image classification, we use a pre-trained **ResNet-18** model from the **PyTorch** library, specifically fine-tuned for the **CIFAR-10** dataset. The model was sourced using the `timm` library, which provides a wide range of pre-trained models. ResNet-18 is a widely used convolutional neural network (CNN) architecture that has been trained on the **ImageNet** dataset and adapted to work with CIFAR-10’s 10-class classification problem. 
+For image classification, we use a pre-trained **ResNet-20** model from **PyTorch Hub**, specifically designed for the **CIFAR-10** dataset. The model is loaded using the following command:
 
-#### Why ResNet-18?
-ResNet-18 is well-suited for this task because it:
-- Balances accuracy and computational efficiency.
-- Handles small image sizes (like the 32x32 CIFAR-10 images) effectively.
-- Utilizes residual connections to mitigate the vanishing gradient problem in deep networks.
+```python
+model = torch.hub.load('chenyaofo/pytorch-cifar-models', 'cifar10_resnet20', pretrained=True)
+
+**ResNet-20** is a well-optimized model for CIFAR-10 and provides a good balance between computational efficiency and accuracy for small image sizes like 32x32 pixels. It utilizes residual connections to mitigate the vanishing gradient problem commonly found in deep networks.
+
+## Why ResNet-20?
+
+- **Tailored for CIFAR-10**: This model is specifically designed and trained for the CIFAR-10 dataset, making it highly suitable for classifying its small image sizes.
+- **Computational Efficiency**: ResNet-20 offers a good balance between accuracy and computational speed.
+- **Residual Connections**: These connections allow the model to train deeper networks effectively without running into the vanishing gradient problem.
 
 Using this pre-trained model allows us to achieve reasonable classification performance without needing extensive training on the CIFAR-10 dataset.
 
