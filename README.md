@@ -34,15 +34,22 @@ This system is designed to be deployed on the provided virtual machines (VM1, VM
 
 ### Deployment Steps
 
-## Step 1: Start Kafka Broker (VM2)
+## Step 1: Start Zookeeper and Kafka Broker (VM2)
 
-SSH into VM2 and start the Kafka broker:
+1. SSH into VM2.
+2. Start the Zookeeper service:
+
+```bash
+zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
+```
+
+3. Once Zookeeper is running, start the Kafka broker:
 
 ```bash
 kafka-server-start.sh /opt/kafka/config/server.properties
 ```
 
-This will start the Kafka broker, which will act as the central message hub for the pipeline.
+This will start the Zookeeper and Kafka broker, which will act as the central message hub for the pipeline.
 
 ## Step 2: Start Consumers (VM3 and VM4)
 
