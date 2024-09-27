@@ -20,13 +20,7 @@ This project implements an IoT data pipeline using **Kafka** for real-time image
   - `Pillow`: For image processing.
   - `base64`: For image encoding/decoding.
   - `couchdb`: For interacting with the CouchDB database.
-
-## Architecture Overview
-1. **VM1**: Sends images to the `iot-topic` in Kafka.
-2. **VM2**: Acts as the Kafka broker, routing messages from producers to consumers.
-3. **VM3**: Consumes images from `iot-topic`, processes them through a machine learning model, and sends predictions to `iot-predictions`.
-4. **VM4**: Consumes both `iot-topic` (for raw images) and `iot-predictions` (for classification results), storing both in CouchDB.
-
+  
 ### Machine Learning Model
 
 For image classification, we use a pre-trained **ResNet-18** model from the **PyTorch** library, specifically fine-tuned for the **CIFAR-10** dataset. The model was sourced using the `timm` library, which provides a wide range of pre-trained models. ResNet-18 is a widely used convolutional neural network (CNN) architecture that has been trained on the **ImageNet** dataset and adapted to work with CIFAR-10’s 10-class classification problem. 
@@ -38,6 +32,12 @@ ResNet-18 is well-suited for this task because it:
 - Utilizes residual connections to mitigate the vanishing gradient problem in deep networks.
 
 Using this pre-trained model allows us to achieve reasonable classification performance without needing extensive training on the CIFAR-10 dataset.
+
+## Architecture Overview
+1. **VM1**: Sends images to the `iot-topic` in Kafka.
+2. **VM2**: Acts as the Kafka broker, routing messages from producers to consumers.
+3. **VM3**: Consumes images from `iot-topic`, processes them through a machine learning model, and sends predictions to `iot-predictions`.
+4. **VM4**: Consumes both `iot-topic` (for raw images) and `iot-predictions` (for classification results), storing both in CouchDB.
 
 ## Deployment Instructions
 
